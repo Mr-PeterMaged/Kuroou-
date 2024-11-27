@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center mt-5">
+    <div class="col-4">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="text-center mb-4">
+              <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+            </div>
+
+            <div class="form-label-group">
+                <input formControlName="displayName" type="text" id="inputDisplayName" class="form-control" placeholder="Display Name"/>
+                <label for="inputDisplayName">Display Name</label>
+                <span class="text-danger" *ngIf="registerForm.get('displayName').invalid &&
+                                                 registerForm.get('displayName').touched &&
+                                                 registerForm.get('displayName').errors['required']">
+                                                 Display Name Is Required
+                </span>
+              </div>
+
+
+
+
+            <div class="form-label-group">
+              <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email Address"/>
+              <label for="inputEmail">Email Address</label>
+              <span class="text-danger" *ngIf="registerForm.get('email').invalid &&
+                                               registerForm.get('email').touched &&
+                                               registerForm.get('email').errors['required']">
+                                               Email Address Is Required
+              </span>
+
+              <span class="text-danger" *ngIf="registerForm.get('email').invalid &&
+                                               registerForm.get('email').touched &&
+                                               registerForm.get('email').errors['pattern']">
+                                               Email Address Is Not Valid
+              </span>
+
+              <span class="text-danger" *ngIf="registerForm.get('email').invalid &&
+                                               registerForm.get('email').touched &&
+                                               registerForm.get('email').errors['emailExists']">
+                                               Email Address Is In Use
+              </span>
+
+            </div>
+
+            <div class="form-label-group">
+              <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password"/>
+              <label for="inputPassword">Password</label>
+              <span class="text-danger" *ngIf="registerForm.get('password').invalid &&
+                                               registerForm.get('password').touched &&
+                                               registerForm.get('password').errors['required']">
+                                               password Is Required
+              </span>
+            </div>
+
+            <ul class="text-danger list-unstyled" *ngIf="errors">
+              <li *ngFor="let error of errors">
+                {{error}}
+              </li>
+            </ul>
+          
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+          </form>
+    </div>
+</div>
+
+
+ 
